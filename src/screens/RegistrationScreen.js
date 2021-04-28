@@ -7,7 +7,7 @@ import TextButton from '../components/TextButton';
 import Error from '../components/Error'
 
 
-function RegistrationScreen() {
+function RegistrationScreen({navigation}) {
   return (
     <View style={styles.container}>
         <Heading>Registration</Heading>
@@ -22,9 +22,10 @@ function RegistrationScreen() {
         />
 
         <FilledButton title={'Register'}  style={styles.loginButton} onPress={() => {}}/>
+        <TextButton title={'Back'} onPress={() => {
+          navigation.pop();
+        }} />
 
-        <TextButton title={'Have you an account? Create one'} onPress={() => {}} />
-        
     </View>
   );
 }
@@ -38,6 +39,11 @@ const styles = StyleSheet.create({
 
   loginButton:{
     marginTop: 16,
+  },
+
+  backButton: {
+    padding: 10,
+    backgroundColor: 'purple'
   }
 })
 
