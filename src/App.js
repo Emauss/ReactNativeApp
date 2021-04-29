@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View, AppRegistry } from 'react-native';
 import 'react-native-gesture-handler';
 import  {NavigationContainer}  from '@react-navigation/native';
 import  {createStackNavigator}  from '@react-navigation/stack';
@@ -7,6 +7,7 @@ import  {createBottomTabNavigator}  from '@react-navigation/bottom-tabs';
 import LoginScreen from './screens/LoginScreen';
 import RegistrationScreen from './screens/RegistrationScreen';
 import AuthStackNavigator from './navigators/AuthStackNavigator';
+import { AuthContext } from './contexts/AuthContext';
 
 function HomeScreen({ navigation }) {
   return (
@@ -34,8 +35,40 @@ const AuthStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 
-function App() {
-  return (
+class App extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state={
+      userEmail: '',
+      userPassword: '',
+    }
+  }
+
+  userRegister = () =>{
+    alert('ok');
+  }
+
+  /* const auth = React.useMemo( 
+    () => ({
+
+      login: (email, password) => {
+        console.log('login', email, password);
+      },
+
+      logout: () => {
+        console.log('logout');
+      },
+
+      register: (email, password) => {
+        console.log('register', email, password);
+      },
+    }),
+    [],
+  ); */
+
+
+  render (){
     /* <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
@@ -50,16 +83,20 @@ function App() {
       </Tab.Navigator>
       */
 
-    <NavigationContainer>
-      <RootStack.Navigator 
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <RootStack.Screen name={'RootStack'} component={AuthStackNavigator} />
-      </RootStack.Navigator>
-    </NavigationContainer> 
-  );
+      return(
+        
+        <NavigationContainer>
+          <RootStack.Navigator 
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <RootStack.Screen name={'RootStack'} component={AuthStackNavigator} />
+          </RootStack.Navigator>
+        </NavigationContainer> 
+
+      );
+  };
 }
 
 const styles = StyleSheet.create({
